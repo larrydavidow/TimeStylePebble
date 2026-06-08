@@ -509,6 +509,8 @@ SidebarWidget getSidebarWidgetByType(SidebarWidgetType type) {
     return weekNumberWidget;
   case WEATHER_UV_INDEX:
     return uvIndexWidget;
+  case QUIET_TIME:
+    return quietTimeWidget;
 #ifdef PBL_HEALTH
   case STEP_COUNTER:
     return stepCounterWidget;
@@ -1049,4 +1051,25 @@ int Beats_getHeight() { return layout.basicWidgetHeight; }
 void Beats_draw(GContext *ctx, int yPosition) {
   graphics_context_set_text_color(ctx, settings.sidebarTextColor);
   draw_basic_widget(ctx, yPosition, "@", currentBeats, layout.basicWidgetY - 1);
+}
+/***** Quiet Time Widget *****/
+
+int QuietTime_getHeight() { return layout.basicWidgetHeight; }
+
+void QuietTime_draw(GContext *ctx, int yPosition) {
+  bool qtActive = quiet_time_is_active();
+
+  graphics_draw_text(ctx, "QT",
+                     smSidebarFont,
+                     GRect(layout.textRectX + SidebarWidgets_xOffset,
+                           yPosition + layout.basicWidgetLabelY,
+                           layout.textRectWidth, 20),
+                     GTextOverflowModeFill, GTextAlignmentCenter, NULL);
+
+  graphics_draw_text(ctx, qtActive ? "ON" : "OFF",
+                     currentSidebarFont,
+                     GRect(layout.textRectX + SidebarWidgets_xOffset,
+                           yPosition + layout.basicWidgetLabelY + 16,
+                           layout.textRectWidth, 20),
+                     GTextOverflowModeFill, GTextAlignmentCenter, NULL);
 }
