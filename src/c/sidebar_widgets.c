@@ -207,6 +207,9 @@ void SidebarWidgets_init() {
   uvIndexWidget.getHeight = UVIndex_getHeight;
   uvIndexWidget.draw = UVIndex_draw;
 
+  quietTimeWidget.getHeight = QuietTime_getHeight;
+  quietTimeWidget.draw = QuietTime_draw;
+
 #ifdef PBL_HEALTH
   stepCounterWidget.getHeight = StepCounter_getHeight;
   stepCounterWidget.draw = StepCounter_draw;
