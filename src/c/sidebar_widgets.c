@@ -120,6 +120,10 @@ SidebarWidget uvIndexWidget;
 int UVIndex_getHeight();
 void UVIndex_draw(GContext *ctx, int yPosition);
 
+SidebarWidget quietTimeWidget;
+int QuietTime_getHeight();
+void QuietTime_draw(GContext *ctx, int yPosition);
+
 #ifdef PBL_HEALTH
 GDrawCommandImage *sleepImage;
 GDrawCommandImage *stepsImage;
